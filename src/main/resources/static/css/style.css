@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+header{height:100px;}
+.contents{min-height:500px;} /* 안에 내용이 없으면 작아지고 많으면 늘어남 */
+footer{height:100px;}
