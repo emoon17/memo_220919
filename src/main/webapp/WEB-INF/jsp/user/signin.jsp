@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 	<div class="d-flex justify-content-center">
 	<div class="login-box">
 		<h1 class="mb-4">로그인</h1>
@@ -34,5 +28,45 @@
 		</form>
 	</div>
 </div>
-</body>
-</html>
+
+<script>
+	$(document).ready(function() {
+		$('#loginForm').on('submit', function(e) {
+			// 서브밋 기능 중단
+			e.preventDefault(); // 서브밋이 일어나지 않아 중단될것임.
+			
+			//validation
+			let loginId = $('#loginId').val().trim();
+			let password = $('#password').val().trim();
+			
+			if (loginId = '') {
+				alert("아이디를 입려해주세요");
+				return false;
+			}
+			if (password = '') {
+				alert("비밀번호를 입력하세요")
+				return false;
+			}
+			
+			//return false;
+			
+			//ajax
+			let url = $(this).attr('action');
+			console.log(url)
+			let params = $(this).serialize(); // 쿼리스트링으로 구성되어있는 키밸류, // loginId=ddd&password=222
+			console.log(params);
+			
+			$.post(url, params)  // 리퀘스트
+			.done(function(data) {
+				// 콜백 함수 임 응답이 성공하면 데이타로 값을 받아온다
+				if(data.code == 1) {
+					// 로그인 성공
+					location.href = "/post/post_list_view"; // 글 목록으로 이동
+				} else {
+					// 로그인 실패
+					alert(data.errorMessage);
+				}
+			});
+		});
+	});
+</script>
