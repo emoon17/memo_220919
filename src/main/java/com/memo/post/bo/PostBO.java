@@ -26,7 +26,6 @@ public class PostBO {
 			imagePath = fileManagerService.saveFile(loginId, file);
 		}
 		
-		
 		// dao insert
 		return postDAO.insertPost(userId, subject, content, imagePath);
 	}
