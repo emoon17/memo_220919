@@ -64,7 +64,7 @@ public class PostController {
 		// 로그인 되어있는 사람 - 1. DB select By- userId, postId
 		
 		//화면이동
-		model.addAttribute("viewName", "/post/PostDetail" );
+		model.addAttribute("viewName", "/post/postDetail" );
 		return "template/layout";
 		
 		
