@@ -62,6 +62,9 @@ public class PostController {
 			return "redirect:/user/sign_in_view";
 		}
 		// 로그인 되어있는 사람 - 1. DB select By- userId, postId
+		Post post = postBO.getPostByPostIdUserId(postId, userId);
+		model.addAttribute("post", post);
+		
 		
 		//화면이동
 		model.addAttribute("viewName", "/post/postDetail" );
