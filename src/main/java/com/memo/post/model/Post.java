@@ -7,7 +7,7 @@ public class Post {
 	private int userId;
 	private int subject;
 	private int content;
-	private int imagePath;
+	private String imagePath;
 	private Date createdAt;
 	private Date updatedAt;
 	
@@ -36,10 +36,10 @@ public class Post {
 	public void setContent(int content) {
 		this.content = content;
 	}
-	public int getImagePath() {
+	public String getImagePath() {
 		return imagePath;
 	}
-	public void setImagePath(int imagePath) {
+	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
 	public Date getCreatedAt() {
