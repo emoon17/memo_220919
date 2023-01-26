@@ -76,6 +76,24 @@ public class PostBO {
 		
 	}
 	
+	// 글 삭제
+	public int deletePostByPostIdUserId(int postId, int userId) {
+		// 그냥 글 삭제하면 이미지가 남아있기 떄문에 원래 글을 가져온 후 삭제.
+		
+		// 1. 기존글 가져오기
+		Post post = getPostByPostIdUserId(postId, userId);
+		if (post == null) { // post null 체크 꼭 해야한다.
+			logger.warn("[글 삭제] post is null. postId:{}, userId{}", postId, userId);
+			return 0;
+		}
+		// 2. 업로드 되었던 이미지가 있으면 파일 삭제
+		if (post.getImagePath() != null) {
+			fileManagerService.deleteFile(post.getImagePath());
+		}
+		// 3. DB delete
+		return postDAO.deletePostByPostIdUserId(postId, userId);
+	}
+	
 	public List<Post> getPostListByUserId(int userId){//서비스를 만들 때는 객체로 해야된다.
 		return postDAO.selectPostListByUserId(userId);
 		
